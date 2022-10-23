@@ -1,7 +1,7 @@
 [translated]
-[planned]
 ./README.md
 ./docs/index.md
+[planned]
 ./docs/platforms.md
 ./docs/quickstart-bazel.md
 ./docs/quickstart-cmake.md
