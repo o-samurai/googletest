@@ -1,7 +1,7 @@
 <!--# GoogleTest User's Guide-->
 # GoogleTestユーザーガイド
 
-## GoogleTestドキュメント日本語訳について
+## GoogleTestユーザーガイド日本語訳について
 本ドキュメントは[GoogleTestユーザーガイド](https://google.github.io/googletest/)を日本語訳したものです。この日本語訳は公式なものではありません。また、本日本語訳を利用したことにより発生するいかなる損害に対しても訳者は一切その責任を負いません。
 
 <!--## Welcome to GoogleTest!-->
@@ -24,14 +24,14 @@ GoogleTestはGoogleのC++テスト・モッキングフレームワークです�
 *   [GoogleTest FAQ](faq.md) - 疑問がある？ヒントが欲しい？まずはここを見てください。
 <!--*   [Mocking for Dummies](gmock_for_dummies.md) - Teaches you how to create mock-->
 <!--    objects and use them in tests.-->
-*   [ダミーのためのモッキング](gmock_for_dummies.md) - どのようにモックオブジェクトを作りそれをテストで使うか伝授します。
+*   [ダミーのためのモッキング](gmock_for_dummies.md) - どのようにモックオブジェクトを作りそれをテストで使うか教えます。
 <!--*   [Mocking Cookbook](gmock_cook_book.md) - Includes tips and approaches to-->
 <!--    common mocking use cases.-->
-*   [モッキングのレシピ](gmock_cook_book.md) - 一般的なモッキングのユースケースに対するヒントや方法を含みます。
+*   [モッキングのレシピ](gmock_cook_book.md) - モッキングの一般的なユースケースに対するヒントや方法。
 <!--*   [Mocking Cheat Sheet](gmock_cheat_sheet.md) - A handy reference for-->
 <!--    matchers, actions, invariants, and more.-->
 *   [モッキングチートシート](gmock_cheat_sheet.md) - matcher, actions, invariants等、モッキングに関する簡単なリファレンス。
 <!--*   [Mocking FAQ](gmock_faq.md) - Contains answers to some mocking-specific-->
 <!--    questions.-->
-*   [モッキングFAQ](gmock_faq.md) - モッキングに関する疑問への回答。
+*   [モッキングFAQ](gmock_faq.md) - モッキングに関するよくある疑問への回答。
 

@@ -108,7 +108,7 @@ GoogleTestはGoogleの基本的なC++サポートポリシーに従います。
 サポートするコンパイラ、プラットフォーム、ビルドツールとそのバージョンは[この表](https://github.com/google/oss-policies-info/blob/main/foundational-cxx-support-matrix.md)を参照してください。
 
 <!--## Who Is Using GoogleTest?-->
-## 誰がGoogleTestを使っているか？
+## GoogleTestを使っているのは誰？
 
 <!--In addition to many internal projects at Google, GoogleTest is also used by the-->
 <!--following notable projects:-->
