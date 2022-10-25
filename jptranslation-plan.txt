@@ -1,9 +1,9 @@
 [translated]
 ./README.md
 ./docs/index.md
-[planned]
 ./docs/platforms.md
 ./docs/quickstart-bazel.md
+[planned]
 ./docs/quickstart-cmake.md
 ./docs/primer.md
 ./docs/advanced.md

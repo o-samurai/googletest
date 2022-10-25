@@ -1,29 +1,42 @@
 <!--# Quickstart: Building with Bazel-->
+# クイックスタート：Bazelによるビルド
 
 <!--This tutorial aims to get you up and running with GoogleTest using the Bazel-->
 <!--build system. If you're using GoogleTest for the first time or need a refresher,-->
 <!--we recommend this tutorial as a starting point.-->
+このチュートリアルはBazelを使ってGoogleTestを始められるようにすることを目標としています。
+GoogleTestを使うのが初めてか久しぶりな場合はこのチュートリアルから始めることをお勧めします。
 
 <!--## Prerequisites-->
+## 前提
 
 <!--To complete this tutorial, you'll need:-->
+このチュートリアルを進めるためには以下のものが必要です。
 
 <!--*   A compatible operating system (e.g. Linux, macOS, Windows).-->
+*   互換オペレーティングシステム（例：Linux、macOS、Windows）
 <!--*   A compatible C++ compiler that supports at least C++14.-->
+*   少なくともC++14以上をサポートする互換C++コンパイラ
 <!--*   [Bazel](https://bazel.build/), the preferred build system used by the-->
 <!--    GoogleTest team.-->
+*   [Bazel](https://bazel.build/)、GoogleTestチームが使うビルドシステム
 
 <!--See [Supported Platforms](platforms.md) for more information about platforms-->
 <!--compatible with GoogleTest.-->
+GoogleTest互換のプラットフォームについての詳細は[サポートするプラットフォーム](platforms.md)をご覧ください。
 
 <!--If you don't already have Bazel installed, see the-->
 <!--[Bazel installation guide](https://bazel.build/install).-->
+まだBazelをインストールしていないのであれば [Bazelインストールガイド](https://bazel.build/install) をご覧ください。
 
 <!--{: .callout .note}-->
 <!--Note: The terminal commands in this tutorial show a Unix shell prompt, but the-->
 <!--commands work on the Windows command line as well.-->
+{: .callout .note}
+注釈：このチュートリアルで示すターミナルとコマンドはUNIXのシェルプロンプトのものですがWindowsのコマンドラインでも同様に動作します。
 
 <!--## Set up a Bazel workspace-->
+## Bazelワークスペースのセットアップ
 
 <!--A-->
 <!--[Bazel workspace](https://docs.bazel.build/versions/main/build-ref.html#workspace)-->
@@ -31,12 +44,19 @@
 <!--software you want to build. Each workspace directory has a text file named-->
 <!--`WORKSPACE` which may be empty, or may contain references to external-->
 <!--dependencies required to build the outputs.-->
+[Bazelワークスペース](https://docs.bazel.build/versions/main/build-ref.html#workspace)
+はビルドしたい管理するソースコードを格納するファイルシステム上のディレクトリです。
+それぞれのワークスペースのディレクトリは `WORKSPACE` という名前の空かビルドが依存する外部依存への参照が含まれます。
 
 <!--First, create a directory for your workspace:-->
+まず、ワークスペースのためのディレクトリを作ります。
 
 <!--```-->
 <!--$ mkdir my_workspace && cd my_workspace-->
 <!--```-->
+```
+$ mkdir my_workspace && cd my_workspace
+```
 
 <!--Next, you’ll create the `WORKSPACE` file to specify dependencies. A common and-->
 <!--recommended way to depend on GoogleTest is to use a-->
@@ -45,6 +65,11 @@
 <!--[`http_archive` rule](https://docs.bazel.build/versions/main/repo/http.html#http_archive).-->
 <!--To do this, in the root directory of your workspace (`my_workspace/`), create a-->
 <!--file named `WORKSPACE` with the following contents:-->
+次に、依存関係を指定する `WORKSPACE` ファイルを作ります。GoogleTestを使うための一般的かつお勧めの方法は
+[Bazel外部依存](https://docs.bazel.build/versions/main/external.html)
+にある
+[`http_archive` ルール](https://docs.bazel.build/versions/main/repo/http.html#http_archive)
+を利用することです。
 
 <!--```-->
 <!--load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")-->
@@ -55,22 +80,38 @@
 <!--  strip_prefix = "googletest-609281088cfefc76f9d0ce82e1ff6c30cc3591e5",-->
 <!--)-->
 <!--```-->
+```
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+  name = "com_google_googletest",
+  urls = ["https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip"],
+  strip_prefix = "googletest-609281088cfefc76f9d0ce82e1ff6c30cc3591e5",
+)
+```
 
 <!--The above configuration declares a dependency on GoogleTest which is downloaded-->
 <!--as a ZIP archive from GitHub. In the above example,-->
 <!--`609281088cfefc76f9d0ce82e1ff6c30cc3591e5` is the Git commit hash of the-->
 <!--GoogleTest version to use; we recommend updating the hash often to point to the-->
 <!--latest version.-->
+上記に示したGoogleTestの設定はGoogleTestのZIPアーカイブをGitHubよりダウンロードします。
+この例ではGitにおけるコミット `609281088cfefc76f9d0ce82e1ff6c30cc3591e5` が使用するGoogleTestのバージョンとなります。
+使用するハッシュは頻繁に最新バージョンのものにすることをお勧めします。
 
 <!--Now you're ready to build C++ code that uses GoogleTest.-->
+これでGoogleTestを使ったC++コードをビルドする準備ができました。
 
 <!--## Create and run a binary-->
+## 作成と実行
 
 <!--With your Bazel workspace set up, you can now use GoogleTest code within your-->
 <!--own project.-->
+Bazelワークスペースのセットアップが終わったら今度はあなたのプロジェクトでgoogleTestを使ってみましょう。
 
 <!--As an example, create a file named `hello_test.cc` in your `my_workspace`-->
 <!--directory with the following contents:-->
+`hello_test.cc` というファイルをあなたの `my_workspace` ディレクトリに作り、以下の例のように記述します。
 
 <!--```cpp-->
 <!--#include <gtest/gtest.h>-->
@@ -83,13 +124,27 @@
 <!--  EXPECT_EQ(7 * 6, 42);-->
 <!--}-->
 <!--```-->
+```
+#include <gtest/gtest.h>
+
+// Demonstrate some basic assertions.
+TEST(HelloTest, BasicAssertions) {
+  // Expect two strings not to be equal.
+  EXPECT_STRNE("hello", "world");
+  // Expect equality.
+  EXPECT_EQ(7 * 6, 42);
+}
+```
 
 <!--GoogleTest provides [assertions](primer.md#assertions) that you use to test the-->
 <!--behavior of your code. The above sample includes the main GoogleTest header file-->
 <!--and demonstrates some basic assertions.-->
+GoogleTestが提供する[アサーション](primer.md#assertions)を使ってあなたのコードの振る舞いをテストします。
+上のサンプルはGoogleTestの主となるヘッダをincludeしており、基本的なアサーションを実際に試すことができます。
 
 <!--To build the code, create a file named `BUILD` in the same directory with the-->
 <!--following contents:-->
+コードをビルドすると、 `BUILD` という以下の内容を持つファイルが同じディレクトリ内に作成されます。
 
 <!--```-->
 <!--cc_test(-->
@@ -99,14 +154,25 @@
 <!--  deps = ["@com_google_googletest//:gtest_main"],-->
 <!--)-->
 <!--```-->
+```
+cc_test(
+  name = "hello_test",
+  size = "small",
+  srcs = ["hello_test.cc"],
+  deps = ["@com_google_googletest//:gtest_main"],
+)
+```
 
 <!--This `cc_test` rule declares the C++ test binary you want to build, and links to-->
 <!--GoogleTest (`//:gtest_main`) using the prefix you specified in the `WORKSPACE`-->
 <!--file (`@com_google_googletest`). For more information about Bazel `BUILD` files,-->
 <!--see the-->
 <!--[Bazel C++ Tutorial](https://docs.bazel.build/versions/main/tutorial/cpp.html).-->
+`cc_test` ルールはビルドしたいC++のテストバイナリを宣言しており、これを `WORKSPACE`ファイルにおける(`@com_google_googletest`)を接頭辞に使うことで GoogleTest (`//:gtest_main`) とリンクしています。
+Bazelの `BUILD` ファイルのより更なる情報は [Bazel C++ チュートリアル](https://docs.bazel.build/versions/main/tutorial/cpp.html) を参照してください。
 
 <!--Now you can build and run your test:-->
+これでテストをビルドして実行することができます。
 
 <!--<pre>-->
 <!--<strong>my_workspace$ bazel test --test_output=all //:hello_test</strong>-->
@@ -135,13 +201,44 @@
 
 <!--INFO: Build completed successfully, 27 total actions-->
 <!--</pre>-->
+<pre>
+<strong>my_workspace$ bazel test --test_output=all //:hello_test</strong>
+INFO: Analyzed target //:hello_test (26 packages loaded, 362 targets configured).
+INFO: Found 1 test target...
+INFO: From Testing //:hello_test:
+==================== Test output for //:hello_test:
+Running main() from gmock_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HelloTest
+[ RUN      ] HelloTest.BasicAssertions
+[       OK ] HelloTest.BasicAssertions (0 ms)
+[----------] 1 test from HelloTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+================================================================================
+Target //:hello_test up-to-date:
+  bazel-bin/hello_test
+INFO: Elapsed time: 4.190s, Critical Path: 3.05s
+INFO: 27 processes: 8 internal, 19 linux-sandbox.
+INFO: Build completed successfully, 27 total actions
+//:hello_test                                                     PASSED in 0.1s
+
+INFO: Build completed successfully, 27 total actions
+</pre>
 
 <!--Congratulations! You've successfully built and run a test binary using-->
 <!--GoogleTest.-->
+おめでとうございます！GoogleTestを使ってテストをビルド・実行することができます。
 
 <!--## Next steps-->
+## 次に
 
 <!--*   [Check out the Primer](primer.md) to start learning how to write simple-->
 <!--    tests.-->
+*   [入門を見て](primer.md) 簡単なテストをどのように書くか学びましょう。 
 <!--*   [See the code samples](samples.md) for more examples showing how to use a-->
 <!--    variety of GoogleTest features.-->
+*   [コードサンプル](samples.md) GoogleTestの機能をどのように使うかの例を見てみましょう。
