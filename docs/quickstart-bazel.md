@@ -33,7 +33,7 @@ GoogleTest互換のプラットフォームについての詳細は[サポート
 <!--Note: The terminal commands in this tutorial show a Unix shell prompt, but the-->
 <!--commands work on the Windows command line as well.-->
 {: .callout .note}
-注釈：このチュートリアルで示すターミナルとコマンドはUNIXのシェルプロンプトのものですがWindowsのコマンドラインでも同様に動作します。
+Note: このチュートリアルで示すターミナルとコマンドはUNIXのシェルプロンプトのものですがWindowsのコマンドラインでも同様に動作します。
 
 <!--## Set up a Bazel workspace-->
 ## Bazelワークスペースのセットアップ
