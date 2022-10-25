@@ -3,8 +3,9 @@
 ./docs/index.md
 ./docs/platforms.md
 ./docs/quickstart-bazel.md
-[planned]
 ./docs/quickstart-cmake.md
+[planned]
+./docs/_data/navigation.yml
 ./docs/primer.md
 ./docs/advanced.md
 ./docs/gmock_for_dummies.md

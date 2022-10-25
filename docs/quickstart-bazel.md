@@ -124,7 +124,7 @@ Bazelワークスペースのセットアップが終わったら今度はあな
 <!--  EXPECT_EQ(7 * 6, 42);-->
 <!--}-->
 <!--```-->
-```
+```cpp
 #include <gtest/gtest.h>
 
 // Demonstrate some basic assertions.
@@ -144,7 +144,7 @@ GoogleTestが提供する[アサーション](primer.md#assertions)を使って�
 
 <!--To build the code, create a file named `BUILD` in the same directory with the-->
 <!--following contents:-->
-コードをビルドすると、 `BUILD` という以下の内容を持つファイルが同じディレクトリ内に作成されます。
+コードをビルドするために、 `BUILD` という以下の内容を持つファイルが同じディレクトリ内に作成します。
 
 <!--```-->
 <!--cc_test(-->
@@ -231,7 +231,7 @@ INFO: Build completed successfully, 27 total actions
 
 <!--Congratulations! You've successfully built and run a test binary using-->
 <!--GoogleTest.-->
-おめでとうございます！GoogleTestを使ってテストをビルド・実行することができます。
+おめでとうございます！GoogleTestを使ってテストをビルド・実行することができました。
 
 <!--## Next steps-->
 ## 次に
