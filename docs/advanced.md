@@ -1095,6 +1095,11 @@
 <!--pattern, and the last is the-->
 <!--[parameter generator](reference/testing.md#param-generators).-->
 
+<!--The parameter generator expression is not evaluated until GoogleTest is-->
+<!--initialized (via `InitGoogleTest()`). Any prior initialization done in the-->
+<!--`main` function will be accessible from the parameter generator, for example,-->
+<!--the results of flag parsing.-->
+
 <!--You can instantiate a test pattern more than once, so to distinguish different-->
 <!--instances of the pattern, the instantiation name is added as a prefix to the-->
 <!--actual test suite name. Remember to pick unique prefixes for different-->
